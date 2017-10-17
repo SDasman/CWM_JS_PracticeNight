@@ -61,7 +61,7 @@ window.onload = function () {
       guess.setAttribute('class', 'guess');
       if (word[i] === "-") {
         guess.innerHTML = "-";
-        space = 1;
+        space += 1;
       } else {
         guess.innerHTML = "_";
       }
@@ -80,8 +80,6 @@ window.onload = function () {
     }
     for (var i = 0; i < guesses.length; i++) {
       if (counter + space === guesses.length) {
-        showLives.innerHTML = "You Win!";
-      } else if (counter + space + space === guesses.length) {
         showLives.innerHTML = "You Win!";
       }
     }
@@ -214,7 +212,7 @@ window.onload = function () {
 
       hints = [
         ["Chemistry teacher gets roped into being a crime underlord", "Kevin Spacey plays a ruthless politician, drama", "Survivors of zombie apocalypse make their way", "Spooky sci-fi FBI show staring two very opposite characters"],
-        ["Science-Fiction horror film", "Classic Tarrentino gangster story", "Neo gets unplugged from this", "Anamated Fish", "Giant great white shark"],
+        ["Science-Fiction horror film", "Classic Tarantino gangster story", "Neo gets unplugged from this", "Animated Fish", "Giant great white shark"],
         ["New Mexico", "New York", "Texas", "Delaware", "California"]
     ];
 
