@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <title>Animation Examples</title>
+	<style>
+		span{
+			margin-left:10px;
+		}
+		.divInner{
+		  padding:10px;
+		}
+		#spnTheSecond{
+			position:fixed;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="divMain">
+		<div class="divInner" id="div1">
+			<button id="btnDivInner">ClickThis</button><span id="spnTheFirst">Fade On, Fade Off</span>
+		</div>
+		<div class="divInner" id="div2"><span id="spnTheSecond">Back it up back it in. Let me begin.</span></div>
+		<div class="divInner"><button id="btnAddItems">Add to the list</button></div>
+		<div class="divInner"><ul id="ulList"></ul></div>
+		<div class="divInner" style='visibility:hidden'><button id="btnAjax">Get Text</button><span id="spnAjax"></span></div>
+	</div>
+
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+  <script>
+	$("document").ready(function(){
+		$("#btnDivInner").click(btnDivInner_click);
+		$("#div2").mouseenter(spnTheSecond_mouseenter);
+		$("#div2").mouseleave(spnTheSecond_mouseleave);
+		$("#btnAddItems").click(btnAddItems_click);
+		//$("#btnAjax").click(btnAjax_click);
+	});
+	
+	function btnDivInner_click(){
+		$("#spnTheFirst").fadeToggle("slow");
+	}
+	function spnTheSecond_mouseenter()
+	{
+		$("#spnTheSecond").animate({left:'250px',position:'fixed'});
+	}
+	function spnTheSecond_mouseleave()
+	{
+		$("#spnTheSecond").animate({left:'10px', position:'fixed'});
+	}
+	function btnAddItems_click()
+	{
+	  $("#ulList").append("<li>List Item 1</li>");
+	}
+	/*
+	function btnAjax_click()
+	{
+		if($("#spnAjax").text() === ""){
+		  $("#spnAjax").load("ajax.txt");
+		}
+		else{
+			$("#spnAjax").text("")
+		}
+	}*/
+  </script>
+</body>
+</html>
+
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
