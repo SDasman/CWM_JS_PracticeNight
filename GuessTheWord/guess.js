@@ -6,10 +6,9 @@ window.onload = function () {
 
   var categories;         // Array of topics
   var chosenCategory;     // Selected category
-  var getHint ;          // Word getHint
   var word ;              // Selected word
-  var guess ;             // Geuss
-  var guesses = [];      // Stored guesses
+  var guess ;             // Guess
+  var guesses = [];       // Stored guesses
   var lives ;             // Lives
   var counter ;           // Count correct guesses
   var space;              // Number of spaces in word '-'
@@ -17,25 +16,23 @@ window.onload = function () {
   // Get elements
   var showLives = document.getElementById("mylives");
   var showCategory = document.getElementById("scategory");
-  var getHint = document.getElementById("hint");
   var showClue = document.getElementById("clue");
-
 
 
   // create alphabet ul
   var buttons = function () {
     myButtons = document.getElementById('buttons');
     letters = document.createElement('ul');
+    letters.id = 'alphabet';
 
     for (var i = 0; i < alphabet.length; i++) {
-      letters.id = 'alphabet';
-      list = document.createElement('li');
-      list.id = 'letter';
+      let list = document.createElement('li');
       list.innerHTML = alphabet[i];
-      check();
-      myButtons.appendChild(letters);
+      check(list);    
       letters.appendChild(list);
     }
+
+    myButtons.appendChild(letters);
   }
 
 
@@ -50,13 +47,13 @@ window.onload = function () {
     }
   }
 
-  // Create geusses ul
+  // Create guesses ul
    result = function () {
     wordHolder = document.getElementById('hold');
     correct = document.createElement('ul');
+    correct.setAttribute('class', 'my-word');
 
-    for (var i = 0; i < word.length; i++) {
-      correct.setAttribute('id', 'my-word');
+    for (var i = 0; i < word.length; i++) {      
       guess = document.createElement('li');
       guess.setAttribute('class', 'guess');
       if (word[i] === "-") {
@@ -66,22 +63,23 @@ window.onload = function () {
         guess.innerHTML = "_";
       }
 
-      guesses.push(guess);
-      wordHolder.appendChild(correct);
+      guesses.push(guess);      
       correct.appendChild(guess);
     }
+
+    wordHolder.appendChild(correct);
   }
 
   // Show lives
-   comments = function () {
-    showLives.innerHTML = "You have " + lives + " lives";
+   comments = function () {    
     if (lives < 1) {
       showLives.innerHTML = "Game Over";
     }
-    for (var i = 0; i < guesses.length; i++) {
-      if (counter + space === guesses.length) {
-        showLives.innerHTML = "You Win!";
-      }
+    else if (counter + space === guesses.length) {
+      showLives.innerHTML = "You Win!";
+    }
+    else {
+      showLives.innerHTML = "You have " + lives + " lives";
     }
   }
 
@@ -157,25 +155,25 @@ window.onload = function () {
 
 
   // OnClick Function
-   check = function () {
+   check = function (list) {
     list.onclick = function () {
       var guess = (this.innerHTML);
       this.setAttribute("class", "active");
       this.onclick = null;
-      for (var i = 0; i < word.length; i++) {
-        if (word[i] === guess) {
-          guesses[i].innerHTML = guess;
-          counter += 1;
-        }
-      }
       var j = (word.indexOf(guess));
       if (j === -1) {
         lives -= 1;
-        comments();
         // animate();
       } else {
-        comments();
+        for (var i = 0; i < word.length; i++) {
+          if (word[i] === guess) {
+            guesses[i].innerHTML = guess;
+            counter += 1;
+          }
+        }
+          
       }
+      comments();     
     }
   }
 
