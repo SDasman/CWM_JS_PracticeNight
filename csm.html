@@ -53,7 +53,8 @@
 	}
 	function btnAddItems_click()
 	{
-	  $("#ulList").append("<li>List Item 1</li>");
+		var elm = $("#ulList");
+	  elm.append(`<li>List Item ${elm.children().length + 1}</li>`);
 	}
 	/*
 	function btnAjax_click()
