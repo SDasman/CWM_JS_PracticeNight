@@ -82,14 +82,14 @@ p.italic {
   color: #fff;
 }
 
-#my-word {
+.my-word {
   margin: 0;
   display: block;
   padding: 0;
   display: block;
 }
 
-#my-word li {
+.my-word li {
   position: relative;
   list-style: none;
   margin: 0;
